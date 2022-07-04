@@ -1,0 +1,25 @@
+{
+  "name": "aicilian",
+  "version": "1.0.0",
+  "description": "Aicilian Restaurant Ordering System",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "aicilian",
+    "restaurant",
+    "ordering",
+    "system"
+  ],
+  "author": "Noor Aiman, Che Wan, Hafiz Fadhlan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
