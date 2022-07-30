@@ -1,0 +1,72 @@
+<%- include('include/_header') %>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+
+            <!-- Content Row -->
+
+            <div class="row">
+
+                <!-- CARD 1 -->
+                <div class="col-xl-6 col-lg-7" style="margin: auto; display:block; margin-top: 1%;">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+
+                        <div class="card-header text-center">
+                            <h2>My Profile</h2>
+                        </div>
+
+                        <div class="card-body">
+
+                            <!-- Card Body -->
+                            <form class="user" method="post">
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 4%; ">
+                                        <div class="col-xl-6 col-md-6 mb-4"
+                                            style="margin: auto; display:block;">
+                                            <div class="form-group">
+                                                <label for="name">NAME:</label>
+                                                <input type="text" class="form-control form-control-user"
+                                                    placeholder="Name.." value="<%= data.name %>" id="name" name="name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">EMAIL:</label>
+                                                <input type="email" class="form-control form-control-user"
+                                                    placeholder="Email.." value="<%= data.email %>" id="email" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">PASSWORD:</label>
+                                                <input type="password" class="form-control form-control-user"
+                                                    placeholder="Password.." name="password" id="password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pos">POSITION:</label>
+                                                <input type="text" class="form-control form-control-user"
+                                                    placeholder="Position" disabled value="<%= data.role.toUpperCase() %>" id="pos">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-xl-10 col-md-6">
+                                        <div style="margin-top: 40px; margin-left: 115%;">
+                                            <button type="submit" onclick="return confirm('Are you sure to update your profile?')"
+                                                class="btn btn-circle btn-info"><span>
+                                                    <i class="fa fa-pen"> </i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<%- include('include/_footer') %>

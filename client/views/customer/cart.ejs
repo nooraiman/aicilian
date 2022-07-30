@@ -1,0 +1,147 @@
+<%- include('include/_header') %>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800"><i class="fa fa-file"></i> <%=title%></h1>
+            <p class="mb-4">Aicilian Restaurant Home Page</p>
+           
+            <div class="row">
+                <form method="post" action="/cart/checkout">
+                <div class="col-lg-12">
+                    <div class="basket">
+                        <div class="basket-labels">
+                            <ul>
+                                <li class="item item-heading">Item</li>
+                                <li class="price">Price</li>
+                                <li class="quantity">Quantity</li>
+                                <li class="subtotal">Subtotal</li>
+                            </ul>
+                        </div>
+                        <% if(cart!=null) { %>
+                            <% for(var i=0; i<cart.length; i++) {%>   
+                        <div class="basket-product">
+                            <div class="item">
+                                <div class="product-image">
+                                    <img src="<%= cart[i].menu.image %>" alt="Placholder Image 2"
+                                        class="product-frame">
+                                </div>
+                                <div class="product-details">
+                                    <h1><strong><span class="item-quantity"><%= cart[i].qty %></span> x</strong> <%= cart[i].menu.name %></h1>
+                                        <br><br>
+                                </div>
+                            </div>
+                            <div class="price"><%= cart[i].menu.price %></div>
+                            <div class="quantity">
+                                <input type="number" value="<%= cart[i].qty %>" min="1" class="quantity-field" readonly>
+                            </div>
+                            <div class="subtotal"><%= cart[i].price %></div>
+                            <div class="remove">
+                                <a href="/cart/remove/<%= cart[i].menu._id %>">Remove</a>
+                            </div>
+                        </div>
+                            <% } %>
+                        <% } else { %>
+                            <div class="basket-product">
+                                <div class="item">
+                                    <div class="product-image">
+                                        <img src="" alt="Your cart is empty!"
+                                            class="product-frame">
+                                    </div>
+                                    <div class="product-details">
+                                        <h1><strong><span class="item-quantity">0</span>x</strong> Empty Cart</h1>
+                                            <br><br>
+                                    </div>
+                                </div>
+                                <div class="price">0.00</div>
+                                <div class="quantity">
+                                    <input type="number" value="0" disabled class="quantity-field">
+                                </div>
+                                <div class="subtotal">0</div>
+                            </div>
+                        <% } %>
+                    </div>
+                    <aside>
+                        <% if(cart!=null) { %>
+                        <div class="summary">
+                            <div class="summary-delivery">
+                                <select name="type" class="summary-delivery-selection" required>
+                                    <% if(table==null) { %>
+                                    <option value="Takeaway" selected>Take Away</option>
+                                    <% } else { %>
+                                    <option value="Dine-In" selected="selected">Select Dine In or Take Away</option>
+                                    <option value="Dine-In">Dine In</option>
+                                    <option value="Takeaway">Take Away</option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="summary-delivery">
+                                <select name="table" class="summary-delivery-selection">
+                                    <option value="<%= table %>" selected="selected" readonly>Table <%= table %></option>
+
+                                </select>
+                            </div>
+
+                            <div class="summary-delivery">
+                                <select name="payment" class="summary-delivery-selection" required>
+                                    <option value="" selected="selected">Payment Types</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="card">Card</option>
+
+                                </select>
+                            </div>
+
+                            <div class="summary-total">
+                                <div class="total-title">Total</div>
+                                <div class="total-value final-value" id="basket-total"><%= totalPrice %></div>
+                            </div>
+                            <div class="summary-checkout">
+                                <button class="checkout-cta" onclick="return confirm('Are you sure you want place order?');">Go to Secure Checkout</button>
+                            </div>
+                        </div>
+                        <% } else {%>
+                            <div class="summary">
+                                <div class="summary-delivery">
+                                    <select name="delivery-collection" class="summary-delivery-selection" disabled>
+                                        <option value="0" selected="selected">Select Dine In or Take Away</option>
+                                        <option value="dinein">Dine In</option>
+                                        <option value="takeaway">Take Away</option>
+    
+                                    </select>
+                                </div>
+                                <div class="summary-delivery">
+                                    <select name="delivery-collection" class="summary-delivery-selection" disabled>
+                                        <option value="" selected="selected" disabled>Table /option>
+    
+                                    </select>
+                                </div>
+    
+                                <div class="summary-delivery">
+                                    <select name="delivery-collection" class="summary-delivery-selection" disabled>
+                                        <option value="0" selected="selected">Payment Types</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="card">Card</option>
+    
+                                    </select>
+                                </div>
+    
+                                <div class="summary-total">
+                                    <div class="total-title">Total</div>
+                                    <div class="total-value final-value" id="basket-total">0.00</div>
+                                </div>
+                                <div class="summary-checkout">
+                                    <button class="checkout-cta" disabled>Go to Secure Checkout</button>
+                                </div>
+                            </div>
+                            <% } %>
+                    </aside>
+                </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<%- include('include/_footer') %>

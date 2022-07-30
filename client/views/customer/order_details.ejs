@@ -1,0 +1,98 @@
+<%- include('./include/_header') %>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><i class="fa fa-book"></i> Order Details</h1>
+        <p class="mb-4">View Order Details</p>
+
+        <!-- DataTables Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold">List of Menu</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="width: 3%;">No</th>
+                                <th>Food</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% var i=0; %>  
+                            <% for(menu in orders.menus) { %>
+                            <tr>
+                                <td><%= i+1 %></td>
+                                <% i++ %>
+                                <td>
+                                    <img src="<%- orders.menus[menu].menu.image %>" alt="<%- orders.menus[menu].menu.name %>" height="100px">
+                                    <span><%- orders.menus[menu].menu.name %></span>
+                                </td>
+                                <td><%- orders.menus[menu].menu.type %></td>
+                                <td class="<%- (orders.status).toString().toLowerCase() %>"><%= orders.status.toUpperCase() %></td>
+                                <td><%- orders.menus[menu].menu.price %></td>
+                                <td><%- orders.menus[menu].qty %></td>
+                                <td>RM <%- orders.menus[menu].price.toFixed(2) %></td>
+                            </tr>
+                            <% } %>   
+                            <!-- <tr>z
+                                <td>1</td>
+                                <td>18092022-1903-4</td>
+                                <td>19:03</td>
+                                <td>4</td>
+                                <td>Dine-In</td>
+                                <td class="text-white" style="background-color: rgb(116, 197, 116);">Served</td>
+                                <td>
+                                    <button class="btn btn-primary btn-circle btn-sm" >
+                                    <span class="icon text-white">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </span>
+                                </td>
+                            </tr>  
+                            <tr>
+                                <td>2</td>
+                                <td>18092022-1903-5</td>
+                                <td>19:30</td>
+                                <td>-</td>
+                                <td>Takeaway</td>
+                                <td class="text-black" style="background-color: rgb(236, 247, 141);">Preparing</td>
+                                <td>
+                                    <button class="btn btn-primary btn-circle btn-sm" >
+                                    <span class="icon text-black">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </span>
+                                </td>
+                            </tr>      
+                            <tr>
+                                <td>3</td>
+                                <td>18092022-1903-6</td>
+                                <td>20:00</td>
+                                <td>10</td>
+                                <td>Dine-In</td>
+                                <td class="text-white" style="background-color: rgb(240, 142, 142);">Placed</td>
+                                <td>
+                                    <button class="btn btn-primary btn-circle btn-sm" >
+                                    <span class="icon text-white">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </span>
+                                </td>
+                            </tr>                                       -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<%- include('./include/_footer') %>

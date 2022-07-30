@@ -1,0 +1,79 @@
+<%- include('../include/_header') %>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800"><i class="fa fa-users"></i>  <%= title %>  </h1>
+            <p class="mb-4">Add Staff, Delete Staff, Only the Manager have the power to manage this page</p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-s-12">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="card shadow mb-12">
+                            <div class="card card-header text-center">
+                                <div class="card-header">
+                                    <div class="form-group" style="margin: auto; display: block; width: 60%;">
+                                        <input type="text" name="menuName" class="form-control form-control-user text-center"
+                                            placeholder="Menu Name..." value="<%= data.name %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-6 mb-4">
+                                        <div class="card card-body preview" >
+                                            <img src="<%= data.image %>" id="img-preview" alt="Image Preview">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-md-6 mb-4">
+                                        <div class="form-group">
+                                            <input type="file" name="file" id="input-files" class="form-control-file border"/>
+                                          </div>
+                                        <div class="form-group">
+                                                <select name="type" id="type" class="form-control">
+                                                    <option value="<%= data.name %>" disabled selected><%= data.type %></option>
+                                                    <option value="Main-Dish">Main Dish</option>
+                                                    <option value="Side-Dish">Side Dish</option>
+                                                    <option value="Set-Menu">Set Menu</option>
+                                                    <option value="Drinks">Drinks</option>
+                                                    <option value="Desserts">Desserts</option>
+                                                </select>
+                                        </div>
+                                        <div class="form-group input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">RM</span>
+                                            </div>
+                                            <input type="text" name="price" class="form-control" value="<%= data.price %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <select name="status" id="status" class="form-control">
+                                                    <option value="<%= data.status %>" disabled selected><%= data.status %></option>
+                                                    <option value="Available">Available</option>
+                                                    <option value="Not-Available">Not Available</option>
+                                                </select>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 mb-4">
+                                        <input type="text" name ="detail" class="form-control form-control-user" placeholder="Details" value="<%= data.detail %>">
+                                    </div>
+                                </div>
+                                <div class="form-group float-right">
+                                        <a href="/staff/manage_menu/delete/<%= data._id %>" class="btn btn-danger" onclick="return confirm('Are you sure to delete this menu?')">Delete</a>
+                                        <input type="submit" id="btnUpdateMenu" name="add" class="btn btn-info" value="Update Menu">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<%- include('../include/_footer') %>

@@ -1,0 +1,93 @@
+<%- include('../include/_header') %>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            
+            <div class="row">
+
+                <!-- CARD 1 -->
+                <div class="col-xl-6 col-lg-7" style="margin: auto; display:block; margin-top: 1%;">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+
+                        <div class="card-header text-center">
+                            <h2>Staff Details</h2>
+                        </div>
+
+                        <div class="card-body">
+
+                            <!-- Card Body -->
+                            <form class="user" method="POST" onSubmit="return confirm('Are you sure to update this staff?')">
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 4%;">
+                                        <div class="col-xl-8 col-md-6 mb-4">
+                                            <div class="form-group">
+                                                <input type="text" name="name" value="<%= data.name %>" class="form-control form-control-user"
+                                                    placeholder="Name..." required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" name="email" value="<%= data.email %>" class="form-control form-control-user"
+                                                    placeholder="Email..." required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" class="form-control form-control-user"
+                                                    placeholder="Password...">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="card  mb-4">
+                                                <div class="card-body">
+                                                    <h5><b>Position</b></h5>
+                                                    <input type="radio" id="admin" name="role" value="admin" required>
+                                                    <label for="admin">Admin</label><br>
+                                                    <input type="radio" id="manager" name="role" value="manager">
+                                                    <label for="manager">Manager</label><br>
+                                                    <input type="radio" id="employee" name="role" value="employee">
+                                                    <label for="employee">Employee</label><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-11 col-md-6">
+                                            <div style="margin-top: 40px;">
+                                                <a href="/staff/manage_staff/delete/<%= data._id %>" onclick="return confirm('Are you sure to delete this staff?')" class="btn btn-circle btn-danger"
+                                                style="margin-left: 95%;"> <span>
+                                                    <i class="fa fa-trash"> </i>
+                                                </span></a>
+                                                <!-- <button type="button" data-toggle="modal"
+                                                    data-target="#deleteStaff"
+                                                    class="btn btn-circle btn-danger"
+                                                    style="margin-left: 95%;"><span>
+                                                        <i class="fa fa-trash"> </i>
+                                                    </span>
+                                                </button> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-6">
+                                            <div style="margin-top: 40px;">
+                                                <button type="submit" data-toggle="modal"
+                                                    data-target="#UpdateStaff"
+                                                    class="btn btn-circle btn-info"><span>
+                                                        <i class="fa fa-pen"> </i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<%- include('../include/_footer') %>

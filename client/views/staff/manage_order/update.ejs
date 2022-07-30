@@ -1,0 +1,162 @@
+<%- include('../include/_header') %>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><i class="fa fa-receipt"></i> --ORDER ID--</h1>
+        <div class="row">
+            <div class="col-xl-6 col-md-6 mb-4">
+                <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">ORDER ID: <%= orders._id %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">TABLE NO: <%= orders.table_num || '--' %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">ORDER TYPE:  <%= orders.type %></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- SERVED CARD -->
+                <!-- <div class="card bg-success shadow h-100 py-2">
+                    <div class="card-body" >
+                        <div class="row no-gutters align-items-center" style="text-align: center;">
+                            <div class="col mr-2" >
+                                <div class="h1 font-weight-bold text-white">SERVED</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- PREPARING CARD -->
+                <!-- <div class="card bg-warning shadow h-100 py-2">
+                    <div class="card-body" >
+                        <div class="row no-gutters align-items-center" style="text-align: center;">
+                            <div class="col mr-2" >
+                                <div class="h1 font-weight-bold text-white">PREPARING</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- PLACED ORDER -->
+                <div class="card shadow h-100 py-2  <%- (orders.status).toLowerCase() %>">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center" style="text-align: center;">
+                            <div class="col mr-2">
+                                <div class="h1 font-weight-bold text-white"><%- (orders.status).toUpperCase() %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" data-toggle="modal" data-target="#OrderStatus"
+                class="btn btn-circle btn-info"><span>
+                    <i class="fa fa-pen"> </i>
+                </span>
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-7">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold">List of Orders</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                                style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">No</th>
+                                        <th style="text-align: center;">Name</th>
+                                        <th style="width: 25%;">Menu ID</th>
+                                        <th style="width: 15%;">Type </th>
+                                        <th style="width: 6%;">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% var i=0; %>  
+                                    <% for(menu in orders.menus) { %>
+                                    <tr>
+                                        <td><%= i+1 %></td>
+                                        <% i++ %>
+                                        <td>
+                                            <span><%- orders.menus[menu].menu.name %></span>
+                                        </td>
+                                        <td><%- orders.menus[menu].menu._id %></td>
+                                        <td><%- orders.type %></td>
+                                        <td><%- orders.menus[menu].qty %></td>
+                                    </tr>
+                                    <% } %>  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<%- include('../include/_footer') %>
+
+<form method="post">
+<div class="modal fade" id="OrderStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-left:31%;"><b> Update Status </b></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="card-body" style="margin: auto; display:block;">
+
+                <input type="radio" id="serve" name="status" value="served">
+                <label for="serve">
+                    <div class="card bg-success " style="height: 60px; width: 150%;">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center" style="text-align: center;">
+                                <div class="col mr-2">
+                                    <div class="h5 font-weight-bold text-white">SERVED</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label><br>
+                <input type="radio" id="prepare" name="status" value="preparing">
+                <label for="prepare">
+                    <div class="card bg-warning " style="height: 60px; width: 119%;">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center" style="text-align: center;">
+                                <div class="col mr-2">
+                                    <div class="h5 font-weight-bold text-white">PREPARING</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label><br>
+                <input type="radio" id="placed" name="status" value="placed">
+                <label for="placed">
+                    <div class="card bg-danger " style="height: 60px; width: 150%;">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center" style="text-align: center;">
+                                <div class="col mr-2">
+                                    <div class="h5 font-weight-bold text-white">PLACED</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label><br>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" style="margin: auto; display:block;">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
