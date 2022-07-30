@@ -23,7 +23,7 @@
                         <div class="basket-product">
                             <div class="item">
                                 <div class="product-image">
-                                    <img src="<%= cart[i].menu.image %>" alt="Placholder Image 2"
+                                    <img src="<%= cart[i].menu.image %>"  width="200px" height="auto" alt="<%= cart[i].menu.name %>"
                                         class="product-frame">
                                 </div>
                                 <div class="product-details">
@@ -34,6 +34,13 @@
                             <div class="price"><%= cart[i].menu.price %></div>
                             <div class="quantity">
                                 <input type="number" value="<%= cart[i].qty %>" min="1" class="quantity-field" readonly>
+                                <br>
+                            </div>
+                            <div class="qtyAdd">
+                                <a href="/cart/add/<%= cart[i].menu._id %>?ref=cart" class="text">Add</a>
+                            </div>
+                            <div class="qtyReduce">
+                                <a href="/cart/reduce/<%= cart[i].menu._id %>?ref=cart" class="text">Reduce</a>
                             </div>
                             <div class="subtotal"><%= cart[i].price %></div>
                             <div class="remove">

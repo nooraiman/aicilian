@@ -19,12 +19,12 @@ module.exports = function Cart(oldCart) {
 
     this.reduceByOne = function(id) {
         this.menus[id].qty--;
-        this.menus[id].price -= this.items[id].item.price;
+        this.menus[id].price -= this.menus[id].menu.price;
         this.totalQty--;
-        this.totalPrice -= this.items[id].item.price;
+        this.totalPrice -= this.menus[id].menu.price;
 
-        if (this.items[id].qty <= 0) {
-            delete this.items[id];
+        if (this.menus[id].qty <= 0) {
+            delete this.menus[id];
         }
     };
 

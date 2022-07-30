@@ -30,8 +30,32 @@ route.post('/add/:id', (req, res) => {
         }
         cart.add(menu, menu.id, tmpQty);
         req.session.cart = cart;
-        res.redirect('/');
+        res.redirect('/cart');
     })
+});
+
+
+route.get('/add/:id', function(req, res, next) {
+    var menuId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    Menu.findById(menuId, function(err, menu) {
+       if (err) {
+           return res.redirect('/');
+       }
+        cart.add(menu, menu.id, 0);
+        req.session.cart = cart;
+        res.redirect('/cart');
+    });
+});
+
+route.get('/reduce/:id', function(req, res, next) {
+    var menuId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    cart.reduceByOne(menuId);
+    req.session.cart = cart;
+    res.redirect('/cart');
 });
 
 route.get('/remove/:id', (req, res) => {

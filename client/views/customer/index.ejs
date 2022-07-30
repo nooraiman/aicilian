@@ -27,12 +27,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6"> 
-                                    <img src="<%- it.image %>" alt="<%- it.name %>" style="height: 100%;width: 100%;">
+                                    <img src="<%- it.image %>" alt="<%- it.name %>" style="height: 150px;width: 150px;">
                                 </div>
-                                <div class="col-6">
-                                    The styling for this basic card example is created by using default Bootstrap
-                                utility classes. By using utility classes, the style of the card component can be
-                                easily modified with no need for any custom CSS!
+                                <div class="col-6" style="height: 120px; overflow-y: scroll">
+                                 <%- it.detail %>
                                 </div>
                             </div>
                         </div>
