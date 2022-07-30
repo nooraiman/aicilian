@@ -16,16 +16,16 @@ passport.use('local.signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true,  
-}, function(err, email, password, done) {
+}, function(req, email, password, done) {
 
     Staff.findOne({'email': email}, function(err, staff) {
         if(err) {
+            console.log(err)
             return done(err);
         }
         if(staff) {
-            return done(null, false, { message: 'Staff ID is already in use.'});
+            return done(null, false,  req.flash('error', { message: 'Staff already exists' }));
         }
-
         var newStaff = new Staff();
         newStaff.name = req.body.name;
         newStaff.email = email;
@@ -35,7 +35,8 @@ passport.use('local.signup', new LocalStrategy({
             if (err) {
                 return done(err);
             }
-            return done(null, false, { message: 'success'});
+
+            return done(null, false, req.flash('success', { message: 'Staff successfully added' }));
         })
     })
 

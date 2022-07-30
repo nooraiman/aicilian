@@ -74,12 +74,12 @@ $(document).ready(function() {
     }
     //Success Message
     <% if ( expressFlash.length > 0) { %>
-    alert('Message: <%= expressFlash.message || expressFlash[0].message %>');
+    alert('Message: <%= expressFlash.message || expressFlash[0].message%>');
     <% } %>
 
     // Error Message
     <% if ( expressFlash2.length > 0) { %>
-    alert('Message: <%= expressFlash2.message || expressFlash2[0].message %>');
+    alert('Message: <%= expressFlash2[0].message || expressFlash2 %>');
     <% } %>
     
     $('#dataTable').DataTable();

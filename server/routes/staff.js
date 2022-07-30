@@ -205,10 +205,15 @@ route.get('/manage_staff/add', (req,res) => {
 route.post('/manage_staff/add', 
     [connectEnsureLogin.ensureLoggedIn('/staff/login'), passport.authenticate('local.signup', {
         successRedirect: '/staff/manage_staff',
-        failureRedirect: '/staff/manage_Staff/add',
+        failureRedirect: '/staff/manage_Staff',
         failureFlash: true
       })],
       (req, res) => {
+        // if(req.flash('error')=="success"){
+        //     req.flash('success', {message:'Staff added successfully'})
+        //     location.redirect('/staff/manage_staff')
+        // }
+
 })
 
 // Staff - Manage Menu (Index)
@@ -221,7 +226,6 @@ route.get('/manage_menu', connectEnsureLogin.ensureLoggedIn('/staff/login') , (r
 // Staff - Update Menu
 route.get('/manage_menu/update/:id', (req,res) => {
     Menu.findOne({'_id': req.params.id}, function(err,docs) {
-        console.log(docs)
         res.render('staff/manage_menu/update', {data: docs, title: "Manage Menu", expressFlash: req.flash('success'), expressFlash2: req.flash('error'), staffName: req.session.staffName, staffRole: req.session.staffRole})
     })
 })
