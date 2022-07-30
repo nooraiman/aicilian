@@ -35,6 +35,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2",
     "path": "^0.12.7",
+    "qrcode": "^1.5.1",
     "req-flash": "^0.0.3",
     "session": "^0.1.0"
   },
