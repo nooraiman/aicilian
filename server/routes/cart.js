@@ -45,12 +45,12 @@ route.get('/remove/:id', (req, res) => {
 
 route.post('/checkout', (req, res) => {
     if (!req.session.cart || req.session.cart.totalPrice == "0" ) {
-        return res.redirect('/cart');
+        req.flash('message', 'You dont have any item in your cart!');
+        res.redirect('/cart');
     }
     else {
         var cart = new Cart(req.session.cart);
         form = req.body
-
         var order = new Order({
             type: form.type,
             table: form.table,
