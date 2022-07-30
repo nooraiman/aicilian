@@ -5,8 +5,40 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800"><i class="fa fa-book"></i> Order Details</h1>
         <p class="mb-4">View Order Details</p>
+        <div class="row">
+            <div class="col-xl-6 col-md-6 mb-4">
+                <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">ORDER ID: <%= orders._id %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">TABLE NO: <%= orders.table_num || '--' %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">ORDER TYPE:  <%= orders.type %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card shadow h-100 py-2 <%- (orders.status).toLowerCase() %>">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center" style="text-align: center;">
+                            <div class="col mr-2">
+                                <div class="h1 font-weight-bold text-white"><%- (orders.status).toUpperCase() %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xsm-4 mb-4">
+                <div class="card shadow h-100 py-2" >
+                    <div class="card-body"> 
+                            <div id="qrcode" style="height:100%;width:100%;text-align: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- DataTables Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold">List of Menu</h6>
@@ -42,48 +74,6 @@
                                 <td>RM <%- orders.menus[menu].price.toFixed(2) %></td>
                             </tr>
                             <% } %>   
-                            <!-- <tr>z
-                                <td>1</td>
-                                <td>18092022-1903-4</td>
-                                <td>19:03</td>
-                                <td>4</td>
-                                <td>Dine-In</td>
-                                <td class="text-white" style="background-color: rgb(116, 197, 116);">Served</td>
-                                <td>
-                                    <button class="btn btn-primary btn-circle btn-sm" >
-                                    <span class="icon text-white">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </span>
-                                </td>
-                            </tr>  
-                            <tr>
-                                <td>2</td>
-                                <td>18092022-1903-5</td>
-                                <td>19:30</td>
-                                <td>-</td>
-                                <td>Takeaway</td>
-                                <td class="text-black" style="background-color: rgb(236, 247, 141);">Preparing</td>
-                                <td>
-                                    <button class="btn btn-primary btn-circle btn-sm" >
-                                    <span class="icon text-black">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </span>
-                                </td>
-                            </tr>      
-                            <tr>
-                                <td>3</td>
-                                <td>18092022-1903-6</td>
-                                <td>20:00</td>
-                                <td>10</td>
-                                <td>Dine-In</td>
-                                <td class="text-white" style="background-color: rgb(240, 142, 142);">Placed</td>
-                                <td>
-                                    <button class="btn btn-primary btn-circle btn-sm" >
-                                    <span class="icon text-white">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </span>
-                                </td>
-                            </tr>                                       -->
                         </tbody>
                     </table>
                 </div>

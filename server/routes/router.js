@@ -43,12 +43,6 @@ route.get('/order', (req,res) => {
             console.log(err);
         }  
 
-        if(docs == '') {
-            req.flash('message','You dont have any order')
-            return res.redirect('/');
-        }
-
-
         res.render('customer/order', { title: 'Order', table: req.session.table_num, orders: docs,  message: req.flash('message')});
     })
 })
@@ -63,18 +57,14 @@ route.get('/order/:id', (req,res) => {
         }
         
         if(docs) {
-            res.render('customer/order_details', { title: 'View Order Details', table: req.session.table_num, orders: docs, message: req.flash('message')});
+            res.render('customer/order_details', { title: 'Order Details', table: req.session.table_num, orders: docs, message: req.flash('message')});
         } else {
             req.flash('message','Order ID is not found');
             res.redirect('/')
         }
      })
 })
-// // API
-// route.post('/api/users', controller.create);
-// route.get('/api/users', controller.find);
-// route.put('/api/users/:id', controller.update);
-// route.delete('/api/users/:id', controller.delete);
+
 
 
 module.exports = route

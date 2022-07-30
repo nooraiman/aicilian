@@ -69,6 +69,9 @@ aria-hidden="true">
 <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script>
 $(document).ready(function() {
+    if ($(window).width() < 768) {
+    $(".sidebar").addClass("toggled")
+    }
     //Success Message
     <% if ( expressFlash.length > 0) { %>
     alert('Message: <%= expressFlash.message || expressFlash[0].message %>');

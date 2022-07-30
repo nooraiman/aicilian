@@ -49,10 +49,28 @@ aria-hidden="true">
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin-2.min.js"></script>
 
+<!-- Page level plugins -->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/js/qrcode.min.js"></script>
 <script>
-    
-    $(document).ready(function () {
-    //Success Message
+    if ($(window).width() < 768) {
+    $(".sidebar").addClass("toggled")
+    }
+        <% if ( title == 'Order Details') { %>
+        $(document).ready(function () {
+        var qrcode = new QRCode("qrcode", {
+            text: window.location.href,
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        })});
+        <% } %>
+
+        $('#dataTable').DataTable();
+
         $('#curYear').text(new Date().getFullYear())
 
         $('.placed').css({'background-color': 'rgb(240, 142, 142)'}); 
@@ -62,7 +80,6 @@ aria-hidden="true">
         <% if (message.length > 0) { %>
             alert('Message: <%= message %>');
         <% } %>
-    })
 </script>
 
 </body>
